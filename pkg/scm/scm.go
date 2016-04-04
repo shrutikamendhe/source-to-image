@@ -16,6 +16,7 @@ import (
 // the sources from the repository.
 func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, error) {
 	glog.V(4).Infof("DownloadForSource %s", s)
+	glog.Infof("DownloadForSource %s", s)
 
 	if len(s) == 0 {
 		return &empty.Noop{}, s, nil
