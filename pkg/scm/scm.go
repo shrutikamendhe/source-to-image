@@ -2,6 +2,7 @@ package scm
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/golang/glog"
 
@@ -16,7 +17,6 @@ import (
 // the sources from the repository.
 func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, error) {
 	glog.V(4).Infof("DownloadForSource %s", s)
-	glog.Infof("DownloadForSource %s", s)
 
 	if len(s) == 0 {
 		return &empty.Noop{}, s, nil
@@ -45,11 +45,15 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 		return &file.File{util.NewFileSystem()}, s, nil
 	}
 
-	// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
-	// binary to download the sources
-	g := git.New()
-	if g.ValidCloneSpec(s) {
-		return &git.Clone{g, util.NewFileSystem()}, s, nil
+	if strings.Contains(s, "tfs"){
+		return nil, s, fmt.Errorf("no downloader defined for location: %q", s)
+	}else{
+		// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
+		// binary to download the sources
+		g := git.New()
+		if g.ValidCloneSpec(s) {
+			return &git.Clone{g, util.NewFileSystem()}, s, nil
+		}
 	}
 
 	return nil, s, fmt.Errorf("no downloader defined for location: %q", s)
