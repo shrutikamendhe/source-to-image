@@ -2,7 +2,6 @@ package scm
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/golang/glog"
 
