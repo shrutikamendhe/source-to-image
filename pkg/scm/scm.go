@@ -47,8 +47,7 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 
 	if CheckIsTFSSourceCode(s){
 		return nil, s, fmt.Errorf("no downloader defined for the location: %q", s)
-	}
-	else{
+	} else {
 		// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
 		// binary to download the sources
 		g := git.New()
