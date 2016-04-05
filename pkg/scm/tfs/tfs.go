@@ -20,13 +20,14 @@ import (
 
 // Git is an interface used by main STI code to extract/checkout git repositories
 type Tfs interface {
-	ValidCloneSpec(source string) bool
+	glog.Infof("In new method")
+	/*ValidCloneSpec(source string) bool
 	ValidCloneSpecRemoteOnly(source string) bool
 	MungeNoProtocolURL(source string, url *url.URL) error
 	Clone(source, target string, opts api.CloneConfig) error
 	Checkout(repo, ref string) error
 	SubmoduleUpdate(repo string, init, recursive bool) error
-	GetInfo(string) *api.SourceInfo
+	GetInfo(string) *api.SourceInfo*/
 }
 
 // New returns a new instance of the default implementation of the Git interface

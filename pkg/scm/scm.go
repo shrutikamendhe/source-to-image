@@ -9,6 +9,7 @@ import (
 	"github.com/openshift/source-to-image/pkg/scm/empty"
 	"github.com/openshift/source-to-image/pkg/scm/file"
 	"github.com/openshift/source-to-image/pkg/scm/git"
+	"github.com/shrutikamendhe/source-to-image/pkg/scm/tfs"
 	"github.com/openshift/source-to-image/pkg/util"
 )
 
@@ -59,6 +60,8 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 }
 
 func CheckIsTFSSourceCode(s string) bool{
+	glog.Infof("CheckIsTFSSourceCode %q ...", s)
+	t := tfs.New()
 	glog.Infof("CheckIsTFSSourceCode %q ...", s)
 	return true
 }
