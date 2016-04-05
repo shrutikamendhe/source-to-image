@@ -60,5 +60,6 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 }
 
 func CheckIfTFS(s) bool{
+	glog.Infof("DownloadForSource %s", s)
 	return true
 } 
