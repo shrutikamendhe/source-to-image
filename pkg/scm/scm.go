@@ -44,8 +44,8 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 	if details.FileExists && (details.UseCopy || forceCopy) {
 		return &file.File{util.NewFileSystem()}, s, nil
 	}
-
-	if strings.Contains(s, "tfs"){
+ 
+	if CheckIfTFS(s){
 		return nil, s, fmt.Errorf("no downloader defined for location: %q", s)
 	}else{
 		// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
@@ -58,3 +58,7 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 
 	return nil, s, fmt.Errorf("no downloader defined for location: %q", s)
 }
+
+func CheckIfTFS(s) bool{
+	return true
+} 
