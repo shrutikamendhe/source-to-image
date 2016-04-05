@@ -45,23 +45,22 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 		return &file.File{util.NewFileSystem()}, s, nil
 	}
 
-	// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
-	// binary to download the sources
-	g := git.New()
-	if g.ValidCloneSpec(s) {
-		return &git.Clone{g, util.NewFileSystem()}, s, nil
-	}
- 
-	/*if true{
+	if CheckIsTFSSourceCode(s){
 		return nil, s, fmt.Errorf("no downloader defined for the location: %q", s)
-	}else{
-		
-	}*/
+	}
+	else{
+		// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
+		// binary to download the sources
+		g := git.New()
+		if g.ValidCloneSpec(s) {
+			return &git.Clone{g, util.NewFileSystem()}, s, nil
+		}
+	}
 
 	return nil, s, fmt.Errorf("no downloader defined for location: %q", s)
 }
 
-func CheckIfTFS(s) bool{
-	glog.Infof("DownloadForSource %s", s)
-	return false
-} 
+func CheckIsTFSSourceCode(s string) bool{
+	glog.Infof("CheckIsTFSSourceCode %q ...", s)
+	return true
+}
