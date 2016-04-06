@@ -46,7 +46,7 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 	}
 
 	if CheckIsTFSSourceCode(s){
-		return nil, s, fmt.Errorf("no downloader defined for the location: %q", s)
+		return nil, s, fmt.Errorf("no downloader defined for location: %q", s)
 	} else {
 		// If the source is valid  Git protocol (file://, ssh://, git://, git@, etc..) use Git
 		// binary to download the sources
@@ -61,7 +61,7 @@ func DownloaderForSource(s string, forceCopy bool) (build.Downloader, string, er
 
 func CheckIsTFSSourceCode(s string) bool{
 	glog.Infof("CheckIsTFSSourceCode %q ...", s)
-	t := tfs.New()
-	glog.Infof("CheckIsTFSSourceCode %q ...", s)
+	//t := tfs.New()
+	//glog.Infof("CheckIsTFSSourceCode %q ...", s)
 	return true
 }
