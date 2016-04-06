@@ -9,7 +9,6 @@ import (
 	"github.com/openshift/source-to-image/pkg/scm/empty"
 	"github.com/openshift/source-to-image/pkg/scm/file"
 	"github.com/openshift/source-to-image/pkg/scm/git"
-	"github.com/shrutikamendhe/source-to-image/pkg/scm/tfs"
 	"github.com/openshift/source-to-image/pkg/util"
 )
 
